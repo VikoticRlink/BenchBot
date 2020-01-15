@@ -63,6 +63,15 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     RobotMap.LEDRainbow();
+    //Set a variable to allow our drive station to know what color we are.
+    //We might want to set this to a RobotMap setting.
+    DriverStation.Alliance color;
+    color = DriverStation.getInstance().getAlliance();
+    if(color == DriverStation.Alliance.Blue){
+        //We were sending this to smartdashboard in 2018 SmartDashboard.putBoolean("Alliance", true);
+    }else {
+        //We were sending this to smartdashboard in 2018 SmartDashboard.putBoolean("Alliance", false);
+    }
   }
 
   /**
@@ -104,7 +113,10 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     RobotMap.LEDColor(255, 255, 0);
-
+    /* -- How we read the data from the FMS in 2018
+    gameData = DriverStation.getInstance().getGameSpecificMessage();
+    if(gameData.length() > 0) {RobotMap.FieldLayout = gameData;}
+    */ 
   }
 
   @Override
@@ -123,3 +135,9 @@ public class Robot extends TimedRobot {
 
 
 }
+
+
+
+
+// What can we read from the driver station? https://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/DriverStation.html
+// https://frc-docs.readthedocs.io/en/latest/docs/software/wpilib-overview/2020-Game-Data.html
