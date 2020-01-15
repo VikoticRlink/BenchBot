@@ -65,13 +65,13 @@ public class Robot extends TimedRobot {
     RobotMap.LEDRainbow();
     //Set a variable to allow our drive station to know what color we are.
     //We might want to set this to a RobotMap setting.
-    DriverStation.Alliance color;
-    color = DriverStation.getInstance().getAlliance();
-    if(color == DriverStation.Alliance.Blue){
+    //DriverStation.Alliance color;
+    //color = DriverStation.getInstance().getAlliance();
+    //if(color == DriverStation.Alliance.Blue){
         //We were sending this to smartdashboard in 2018 SmartDashboard.putBoolean("Alliance", true);
-    }else {
+    //}else {
         //We were sending this to smartdashboard in 2018 SmartDashboard.putBoolean("Alliance", false);
-    }
+    //}
   }
 
   /**
