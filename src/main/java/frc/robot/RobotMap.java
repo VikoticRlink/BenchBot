@@ -31,6 +31,7 @@ public class RobotMap {
     //public static int m_rainbowFirstPixelHue;
 
     //-- Color Sensor ---//
+    //https://github.com/REVrobotics/Color-Sensor-v3-Examples/blob/master/Java/Read%20RGB%20Values/src/main/java/frc/robot/Robot.java
     private final I2C.Port i2cPort = I2C.Port.kOnboard;
     private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
     public Color detectedColor = m_colorSensor.getColor();
