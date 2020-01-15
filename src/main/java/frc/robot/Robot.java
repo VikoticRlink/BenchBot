@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -20,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
+  private Lighting m_Lighting;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -30,7 +32,7 @@ public class Robot extends TimedRobot {
     RobotMap.init();
     // Instantiate our RobotContainer.  This will perform all our button bindings,.
     m_robotContainer = new RobotContainer();
-   
+    m_Lighting = new Lighting();
   }
 
   /**
@@ -62,7 +64,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
-    RobotMap.LEDRainbow();
+    m_Lighting.LEDRainbow();
+    //RobotMap.LEDRainbow();
     //Set a variable to allow our drive station to know what color we are.
     //We might want to set this to a RobotMap setting.
     //DriverStation.Alliance color;
@@ -92,7 +95,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-   RobotMap.LEDColor(255, 0, 0);
+    m_Lighting.LEDColor(255, 0, 0);
   }
 
   @Override
@@ -112,7 +115,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    RobotMap.LEDColor(255, 255, 0);
+    m_Lighting.LEDColor(255, 255, 0);
     /* -- How we read the data from the FMS in 2018
     gameData = DriverStation.getInstance().getGameSpecificMessage();
     if(gameData.length() > 0) {RobotMap.FieldLayout = gameData;}
@@ -130,7 +133,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    RobotMap.LEDRY();
+    m_Lighting.LEDRY();
   }
 
 
