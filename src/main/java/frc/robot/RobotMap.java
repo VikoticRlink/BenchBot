@@ -7,7 +7,7 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Compressor;
+//import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import edu.wpi.first.wpilibj.AddressableLED;
@@ -21,10 +21,9 @@ import com.revrobotics.ColorSensorV3;
  * Add your docs here.
  */
 public class RobotMap {
-    //--- Pneumatics ---//
-    public static Compressor airSupply;
-    public static DoubleSolenoid Valve1;
-    public static DoubleSolenoid Valve2;
+  // --- Pneumatics ---//
+  public static DoubleSolenoid Valve1;
+  public static DoubleSolenoid Valve2;
 
     //--- LED ---//
     public static AddressableLED m_led;
@@ -37,19 +36,16 @@ public class RobotMap {
     Color detectedColor = m_colorSensor.getColor();
 
 public static void init() {
-    //--- Pneumatics ---//
-    airSupply = new Compressor(60);
-    Valve1 = new DoubleSolenoid(60, 0, 1);
-    Valve2 = new DoubleSolenoid(60, 2, 3);
-    //airSupply.start();
-
+  //--- Pneumatics ---//
+  Valve1 = new DoubleSolenoid(60, 0, 1);
+  Valve2 = new DoubleSolenoid(60, 2, 3);
     //--- LEDs ---//
     m_led = new AddressableLED(1);
     m_ledBuffer = new AddressableLEDBuffer(12);
     m_led.setLength(m_ledBuffer.getLength());
     m_led.setData(m_ledBuffer);
     m_led.start();
-
+    
 }
 //--- LED Functions ---//
   public static void LEDRainbow(){
@@ -65,6 +61,7 @@ public static void init() {
         for (var i = 0; i < m_ledBuffer.getLength(); i++) {
             m_ledBuffer.setRGB(i, Red, Green, Blue);
         }
+      m_led.setData(m_ledBuffer);
     }
     public static void LEDMatchSensor(){
         //for (var i = 0; i < m_ledBuffer.getLength(); i++) {
@@ -72,4 +69,16 @@ public static void init() {
         //}
         //m_led.setData(m_ledBuffer);
     }
+    public static void LEDRY(){
+      
+      for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+        if (i % 2 == 0)
+          m_ledBuffer.setRGB(i, 255, 240, 0);
+        else
+          m_ledBuffer.setRGB(i, 255, 0, 0);
+        }     
+        
+      m_rainbowFirstPixelHue += 1;
+      m_led.setData(m_ledBuffer);
+  }
 }
