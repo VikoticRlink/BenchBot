@@ -23,7 +23,7 @@ import com.revrobotics.ColorSensorV3;
 public class RobotMap {
   // --- Pneumatics ---//
   public static DoubleSolenoid Valve1;
-  public static DoubleSolenoid Valve2;
+  public static DoubleSolenoid Valve2; 
 
     //--- LED ---//
     //public static AddressableLED m_led;
