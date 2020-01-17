@@ -74,5 +74,5 @@ public class Lighting extends SubsystemBase {
     m_led.setData(m_ledBuffer);
   }
 
-
+// More ideas https://www.tweaking4all.com/hardware/arduino/adruino-led-strip-effects/#LEDStripEffectSparkle
 }
