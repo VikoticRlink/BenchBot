@@ -12,6 +12,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.*;
 
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
+import com.revrobotics.ColorSensorV3;
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -23,6 +28,8 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   private Lighting m_Lighting;
 
+  private final I2C.Port i2cPort = I2C.Port.kOnboard;
+  private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -44,9 +51,41 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    
-   // Color detectedColor = m_colorSensor.getColor();
-   //detectedColor = m_colorSensor.getColor();
+    Color detectedColor = m_colorSensor.getColor();
+
+    /**
+     * The sensor returns a raw IR value of the infrared light detected.
+     */
+    double IR = m_colorSensor.getIR();
+
+    /**
+     * Open Smart Dashboard or Shuffleboard to see the color detected by the 
+     * sensor.
+     */
+    SmartDashboard.putNumber("Red", (int) detectedColor.red*250);
+    SmartDashboard.putNumber("Green", (int) detectedColor.green * 250);
+    SmartDashboard.putNumber("Blue", (int) detectedColor.blue*250);
+    SmartDashboard.putNumber("IR", IR);
+
+    if (IR>10){
+      m_Lighting.LEDColor((int) detectedColor.red*250, (int) detectedColor.green * 250, (int) detectedColor.blue*250);
+    }else{
+      m_Lighting.LEDColor(255, 255, 0);
+    }
+    /**
+     * In addition to RGB IR values, the color sensor can also return an 
+     * infrared proximity value. The chip contains an IR led which will emit
+     * IR pulses and measure the intensity of the return. When an object is 
+     * close the value of the proximity will be large (max 2047 with default
+     * settings) and will approach zero when the object is far away.
+     * 
+     * Proximity can be used to roughly approximate the distance of an object
+     * or provide a threshold for when an object is close enough to provide
+     * accurate color values.
+     */
+    int proximity = m_colorSensor.getProximity();
+
+    SmartDashboard.putNumber("Proximity", proximity);
 
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
     // commands, running already-scheduled commands, removing finished or interrupted commands,
@@ -115,7 +154,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    m_Lighting.LEDColor(255, 255, 0);
+
+   //
     /* -- How we read the data from the FMS in 2018
     gameData = DriverStation.getInstance().getGameSpecificMessage();
     if(gameData.length() > 0) {RobotMap.FieldLayout = gameData;}
