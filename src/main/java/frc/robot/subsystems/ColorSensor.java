@@ -44,16 +44,23 @@ public void periodic() {
   double redCorrection = -0.30;
   double blueCorrection = -0.18;
   double greenCorrection = -0.48;
+  double currentRed = detectedColor.red + redCorrection;
+  double currentGreen = detectedColor.green + greenCorrection;
+  double currentBlue = detectedColor.blue + blueCorrection;
+  double myRed = currentRed * 255;
+  double myGreen = currentGreen * 255;
+  double myBlue = currentBlue * 255;
     int proximity = m_colorSensor.getProximity();
 
-    SmartDashboard.putNumber("Proximity", proximity);
     SmartDashboard.putNumber("raw Red", detectedColor.red);
     SmartDashboard.putNumber("raw Green", detectedColor.green);
     SmartDashboard.putNumber("raw Blue", detectedColor.blue);
     
-    SmartDashboard.putNumber("Red", detectedColor.red*255);
-    SmartDashboard.putNumber("Green", detectedColor.green*255);
-    SmartDashboard.putNumber("Blue", detectedColor.blue*255);
+    SmartDashboard.putNumber("Red", myRed);
+    SmartDashboard.putNumber("Green", myGreen);
+    SmartDashboard.putNumber("Blue", myBlue);
+    
+    SmartDashboard.putNumber("Proximity", proximity);
     SmartDashboard.putNumber("IR", IR);
 
     if (proximity>100){
