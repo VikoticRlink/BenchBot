@@ -41,9 +41,9 @@ public void periodic() {
      */
   // Color8Bit displayColor =  Color8Bit((int) detectedColor.red*255, (int) detectedColor.green * 255, (int) detectedColor.blue * 255);
 
-  double redCorrection = -0.30;
-  double blueCorrection = -0.18;
-  double greenCorrection = -0.48;
+  double redCorrection = -0.32;
+  double blueCorrection = -0.20;
+  double greenCorrection = -0.47;
   double currentRed = detectedColor.red + redCorrection;
   double currentGreen = detectedColor.green + greenCorrection;
   double currentBlue = detectedColor.blue + blueCorrection;
@@ -59,7 +59,7 @@ public void periodic() {
     SmartDashboard.putNumber("Red", myRed);
     SmartDashboard.putNumber("Green", myGreen);
     SmartDashboard.putNumber("Blue", myBlue);
-    
+
     SmartDashboard.putNumber("Proximity", proximity);
     SmartDashboard.putNumber("IR", IR);
 
