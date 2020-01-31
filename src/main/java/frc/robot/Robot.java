@@ -25,6 +25,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
  // private Lighting m_Lighting;
   private ColorSensor m_ColorSensor;
+  private Pneumatics m_Pneumatics;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -36,6 +37,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
    // m_Lighting = new Lighting();
     m_ColorSensor = new ColorSensor();
+    m_Pneumatics = new Pneumatics();
   }
 
   /**
@@ -48,10 +50,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     
-
-
-
-
 
 
 

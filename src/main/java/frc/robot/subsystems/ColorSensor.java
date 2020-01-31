@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
-import edu.wpi.first.wpilibj.util.Color8Bit;
+//import edu.wpi.first.wpilibj.util.Color8Bit;
 import com.revrobotics.ColorSensorV3;
 
 public class ColorSensor extends SubsystemBase {
@@ -22,7 +22,7 @@ public class ColorSensor extends SubsystemBase {
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   private Lighting m_Lighting;
-  private Color8Bit displayColor;
+ // private Color8Bit displayColor;
 
 public ColorSensor() {
   m_Lighting= new Lighting();
@@ -41,9 +41,9 @@ public void periodic() {
      */
   // Color8Bit displayColor =  Color8Bit((int) detectedColor.red*255, (int) detectedColor.green * 255, (int) detectedColor.blue * 255);
 
-  double redCorrection = -0.32;
-  double blueCorrection = -0.20;
-  double greenCorrection = -0.47;
+  double redCorrection = -0.31;
+  double blueCorrection = -0.19;
+  double greenCorrection = -0.48;
   double currentRed = detectedColor.red + redCorrection;
   double currentGreen = detectedColor.green + greenCorrection;
   double currentBlue = detectedColor.blue + blueCorrection;
@@ -65,20 +65,40 @@ public void periodic() {
 
     if (proximity>100){
 
-      if(detectedColor.red*255 > 80){
+      if((myRed > 30)&& (myBlue < 0) && (myGreen < 0)){
+        //Detected Red
+        m_Lighting.LEDColor(255, 0, 0);
+      }
+      if((myRed < 0)&& (myBlue > 10) && (myGreen > 20)){
+        //Detected Green
+        m_Lighting.LEDColor(0, 255, 0);
+      }
+      if((myRed < 0)&& (myBlue > 40) && (myGreen < 0)){
+        //Detected Blue
+        m_Lighting.LEDColor(0, 0, 255);
+      }
+      if((myRed > 3)&& (myBlue < 3) && (myGreen > 15)){
+        //Detected Yellow
+          m_Lighting.LEDColor(255, 255, 0);
+      }
+      if((myRed < 5)&& (myBlue < 20) && (myGreen < 5)){
+        //Detected NA
+          m_Lighting.LEDColor(255, 255, 255);
+      }
+/*
         if(detectedColor.green*255 > 100){
           m_Lighting.LEDColor(255, 255, 0);
         } else {
         m_Lighting.LEDColor(255, 0, 0);
         }
       }
-      if(detectedColor.blue*255 > 80){
+      if(myBlue > 30){
         m_Lighting.LEDColor(0, 0, 255);
       }
-      if(detectedColor.green*255 > 80){
+      if(myGreen > 80){
         m_Lighting.LEDColor(0, 255, 0);
       }
-      //m_Lighting.LEDColor(displayColor.red, displayColor.green, displayColor.blue);
+      //m_Lighting.LEDColor(displayColor.red, displayColor.green, displayColor.blue);*/
 
     }else{
       m_Lighting.LEDRainbow();
