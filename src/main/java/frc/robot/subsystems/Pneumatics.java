@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
@@ -31,7 +32,12 @@ public class Pneumatics extends SubsystemBase {
   public void periodic() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    if(RobotContainer.DriverController.getAButton()){
+      Valve1.set(DoubleSolenoid.Value.kForward);
+    }else{
+      Valve1.set(DoubleSolenoid.Value.kReverse);
 
+    }
 
   }
 }

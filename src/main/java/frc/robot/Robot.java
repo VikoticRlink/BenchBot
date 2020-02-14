@@ -23,9 +23,7 @@ import frc.robot.subsystems.*;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
- // private Lighting m_Lighting;
-  private ColorSensor m_ColorSensor;
-  private Pneumatics m_Pneumatics;
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -35,9 +33,7 @@ public class Robot extends TimedRobot {
     RobotMap.init();
     // Instantiate our RobotContainer.  This will perform all our button bindings,.
     m_robotContainer = new RobotContainer();
-   // m_Lighting = new Lighting();
-    m_ColorSensor = new ColorSensor();
-    m_Pneumatics = new Pneumatics();
+
   }
 
   /**
