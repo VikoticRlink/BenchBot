@@ -102,6 +102,7 @@ public void periodic() {
 
     }else{
       m_Lighting.LEDRainbow();
+
     }
         /**
      * In addition to RGB IR values, the color sensor can also return an 
