@@ -25,7 +25,7 @@ public class Constants {
 	public static final int kSlotIdx = 0;
 
 	/**
-	 * Talon SRX/ Victor SPX will supported multiple (cascaded) PID loops. For
+	 * Talon FX supports multiple (cascaded) PID loops. For
 	 * now we just want the primary one.
 	 */
 	public static final int kPIDLoopIdx = 0;
@@ -48,13 +48,12 @@ public class Constants {
 	/**
 	 * Gains used in Positon Closed Loop, to be adjusted accordingly
      * Gains(kp, ki, kd, kf, izone, peak output);
+	 * Gains(double _kP, double _kI, double _kD, double _kF, int _kIzone, double _kPeakOutput)
      */
-
+    public static Gains kGains = new Gains(0.15, 0.0, 1.0, 0.0, 0, 1.0);
+    public static Gains kArmGains = new Gains(0.02, 0.0, 0.45, 0, 0, 0.1);
+    public static Gains kDriveGains = new Gains(0.02, 0.0, 0.45, 0, 0, 0.1);
 
 	 //http://www.ni.com/en-us/innovations/white-papers/06/pid-theory-explained.html
-	 
-	static final Gains kGains = new Gains(0.15, 0.0, 1.0, 0.0, 0, 1.0);
-	static final Gains kElevatorGains = new Gains(0.08, 0.0, 1.0, 0.0, 0, 1.0);
-	static final Gains kWormGains = new Gains(0.15, 0.0, 1.0, 0.0, 0, 1.0);
-	static final Gains kClimbDriveGains = new Gains(0.15, 0.0, 1.0, 0.0, 0, 1.0);
+	
 }

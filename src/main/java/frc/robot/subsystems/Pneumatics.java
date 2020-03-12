@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
@@ -16,15 +17,14 @@ public class Pneumatics extends SubsystemBase {
   
   // --- Pneumatics ---//
   public static Compressor airSupply;
-  public static DoubleSolenoid Valve1;
-  public static DoubleSolenoid Valve2; 
+  public static DoubleSolenoid ClimbPneumaticA; 
+  public static DoubleSolenoid ClimbPneumaticB;
 
   public  Pneumatics() {
     //--- Pneumatics ---//
     airSupply = new Compressor(60);
-    Valve1 = new DoubleSolenoid(60, 0, 1);
-    //Valve2 = new DoubleSolenoid(60, 2, 3);
-
+    ClimbPneumaticA = new DoubleSolenoid(60, 0, 1);
+    ClimbPneumaticB = new DoubleSolenoid(60, 2, 3);
   }
 
 
@@ -32,12 +32,14 @@ public class Pneumatics extends SubsystemBase {
   public void periodic() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    if(RobotContainer.DriverController.getAButton()){
-      Valve1.set(DoubleSolenoid.Value.kForward);
+    if(Arms.IsUpright){
+    if (RobotContainer.OperatorController.getStartButton() && RobotContainer.OperatorController.getBackButton()){
+      ClimbPneumaticA.set(DoubleSolenoid.Value.kForward); 
+      ClimbPneumaticB.set(DoubleSolenoid.Value.kForward);     
     }else{
-      Valve1.set(DoubleSolenoid.Value.kReverse);
-
+      ClimbPneumaticA.set(DoubleSolenoid.Value.kReverse);
+      ClimbPneumaticB.set(DoubleSolenoid.Value.kReverse);
     }
-
   }
+}
 }
